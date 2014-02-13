@@ -10,7 +10,7 @@
  * 
  * Hybrid_Endpoint class provides a simple way to handle the OpenID and OAuth endpoint.
  */
-class Hybrid_Endpoint {
+class Hybrid_Get {
 	public static $request = NULL;
 	public static $initDone = FALSE;
 
@@ -28,7 +28,7 @@ class Hybrid_Endpoint {
 		// Setup request variable
 		Hybrid_Endpoint::$request = $request;
 
-		if ( is_null(Hybrid_Endpoint::$request) ){
+		if ( is_null(Hybrid_Get::$request) ){
 			// Fix a strange behavior when some provider call back ha endpoint
 			// with /index.php?hauth.done={provider}?{args}... 
 			// >here we need to recreate the $_REQUEST
@@ -42,26 +42,26 @@ class Hybrid_Endpoint {
 		}
 
 		// If openid_policy requested, we return our policy document
-		if ( isset( Hybrid_Endpoint::$request["get"] ) && Hybrid_Endpoint::$request["get"] == "openid_policy" ) {
-			Hybrid_Endpoint::processOpenidPolicy();
+		if ( isset( Hybrid_Get::$request["get"] ) && Hybrid_Get::$request["get"] == "openid_policy" ) {
+			Hybrid_Get::processOpenidPolicy();
 		}
 
 		// If openid_xrds requested, we return our XRDS document
-		if ( isset( Hybrid_Endpoint::$request["get"] ) && Hybrid_Endpoint::$request["get"] == "openid_xrds" ) {
+		if ( isset( Hybrid_Get::$request["get"] ) && Hybrid_Get::$request["get"] == "openid_xrds" ) {
 			Hybrid_Endpoint::processOpenidXRDS();
 		}
 
 		// If we get a hauth.start
-		if ( isset( Hybrid_Endpoint::$request["hauth_start"] ) && Hybrid_Endpoint::$request["hauth_start"] ) {
-			Hybrid_Endpoint::processAuthStart();
+		if ( isset( Hybrid_Get::$request["hauth_start"] ) && Hybrid_Get::$request["hauth_start"] ) {
+			Hybrid_Get::processAuthStart();
 		}
 		// Else if hauth.done
-		elseif ( isset( Hybrid_Endpoint::$request["hauth_done"] ) && Hybrid_Endpoint::$request["hauth_done"] ) {
-			Hybrid_Endpoint::processAuthDone();
+		elseif ( isset( Hybrid_Get::$request["hauth_done"] ) && Hybrid_Get::$request["hauth_done"] ) {
+			Hybrid_Get::processAuthDone();
 		}
 		// Else we advertise our XRDS document, something supposed to be done from the Realm URL page
 		else {
-			Hybrid_Endpoint::processOpenidRealm();
+			Hybrid_Get::processOpenidRealm();
 		}
 	}
 
