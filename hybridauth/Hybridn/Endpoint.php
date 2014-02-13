@@ -1,15 +1,7 @@
 <?php
-/*!
-* HybridAuth
-* http://hybridauth.sourceforge.net | http://github.com/hybridauth/hybridauth
-* (c) 2009-2012, HybridAuth authors | http://hybridauth.sourceforge.net/licenses.html
-*/
+namespace browse\auth;
 
-/**
- * Hybrid_Endpoint class
- * 
- * Hybrid_Endpoint class provides a simple way to handle the OpenID and OAuth endpoint.
- */
+
 class Hybrid_Get {
 	public static $request = NULL;
 	public static $initDone = FALSE;
